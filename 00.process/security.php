@@ -18,7 +18,7 @@ if (@$_GET['q'] !== 'admin/authenticate'){
 } else {
     if (isset($_POST['user']) && isset($_POST['password'])){
         // Validate that the username and password match
-        if ($_POST['user'] == 'admin' && $_POST['password'] == 'spider20'){
+        if ($_POST['user'] == 'admin' && MD5($_POST['password']) == 'd1c33fc99d2894f3bb5dbb1aa0e16051'){
             // Authentication test passed
             setcookie('user',$_POST['user'],0,'/');
             header('Location: /admin',301);
