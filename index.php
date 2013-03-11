@@ -1,5 +1,1 @@
-<?php
-
-include ('_e/e.php');
-
-?>
+../engine4/index.php
