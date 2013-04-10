@@ -2,20 +2,20 @@
 
 <?php
 
-print admin_content_edit_save();
+admin_content_edit_save();
 print admin_content_edit($this);
 
 function admin_content_edit(&$e){
     
     // Open up the item that we are editing
-    /*
-    $things = e::_search($_GET['directory']);
+    $directoryroot = e::_dirup(dirname($_SERVER['SCRIPT_FILENAME']));    
+    $things = scandir($directoryroot . '/' . $_GET['directory']);
+    print_r($things);
     if (sizeof($things) == 1){
-        $thing = array_shift($things);
+    
     } else {
         // This is an error condition - we should not be editing a path that has dupes
     }
-    */
     
     // Open up the template that we are working on
     if (!isset($_GET['template'])) { $_GET['template'] = 'plaintext'; }
@@ -58,8 +58,6 @@ function admin_content_edit_save(){
         }
     }
     
-    $return = print_r($data,TRUE);
-    
     $directoryroot = e::_dirup(dirname($_SERVER['SCRIPT_FILENAME']));
     
     if (isset($_GET['directory']) AND strlen($_GET['directory']) > 0){
@@ -77,8 +75,8 @@ function admin_content_edit_save(){
             
         }
     }
-    print "Filename = $filename<br>";
     
+    $return = TRUE;
     foreach($data as $key=>$value){
         if(is_array($value)){
             // TODO: Deal with the saving of fields
@@ -88,6 +86,7 @@ function admin_content_edit_save(){
                 print "<strong>Success:</strong> Saved " . $outputfilename . '<br>';
             } else {
                 print "<strong>Error:</strong> Unable to save " . $outputfilename . '<br>';
+                $return = FALSE;
             }
         }
     }

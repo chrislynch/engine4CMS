@@ -51,7 +51,7 @@
                     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444444), to(#333333));
                     padding: 10px;	
                     margin-top: -5px;
-                    padding-bottom: 40px;
+                    padding-bottom: 50px;
 
             }
             #MenuContentContainer a {
