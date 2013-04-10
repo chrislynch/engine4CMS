@@ -51,6 +51,7 @@
                     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444444), to(#333333));
                     padding: 10px;	
                     margin-top: -5px;
+                    padding-bottom: 40px;
 
             }
             #MenuContentContainer a {
@@ -102,6 +103,7 @@
                     <ul>
                         <li><a href="content/add/post">Add Post</a>
                             <ul>
+                                <li><a href="">Standard Post</a></li>
                                 <li><a href="">Plain Text Post</a></li>
                                 <li><a href="">Image Post</a></li>
                                 <li><a href="">Media Post</a></li>
