@@ -104,7 +104,7 @@
                         <li><a href="content/add/post">Add Post</a>
                             <ul>
                                 <li><a href="">Standard Post</a></li>
-                                <li><a href="">Plain Text Post</a></li>
+                                <li><a href="content/edit">Plain Text Post</a></li>
                                 <li><a href="">Image Post</a></li>
                                 <li><a href="">Media Post</a></li>
                                 <li><a href="">Link/URL Post</a></li>
