@@ -68,10 +68,10 @@ function admin_index(){
     // Output the directories
     foreach($directories as $subdirectory){
         if (e::_isValidDirectory("$parent/$subdirectory")){    
-            if ($subdirectory[0] !== '_' AND $subdirectory[0] !== '.'){
+            // if ($subdirectory[0] !== '_' AND $subdirectory[0] !== '.'){
                 print "<tr><td>&gt;&gt;</td><td><a href='filesystem?directory=$parent/$subdirectory'>$subdirectory</a></td>
                 <td><a href='filesystem?directory=$directory&rrm=$parent/$subdirectory'>Delete</a></td></tr>";
-            }
+            // }
         }
     }
     // Output the files

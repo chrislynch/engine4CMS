@@ -8,26 +8,28 @@ print admin_content_edit($this);
 function admin_content_edit(&$e){
     
     // Open up the item that we are editing
-    $directoryroot = e::_dirup(dirname($_SERVER['SCRIPT_FILENAME']));    
-    $things = scandir($directoryroot . '/' . $_GET['directory']);
-    print_r($things);
-    if (sizeof($things) == 1){
-    
+    switchto_site();
+    if (isset($_GET['directory']) && strlen($_GET['directory']) > 0){
+        $edits = e::_search($_GET['directory']);
     } else {
-        // This is an error condition - we should not be editing a path that has dupes
+        $edits = array();
+        $edits[] = new stdClass();
     }
+    switchto_admin();
     
     // Open up the template that we are working on
-    if (!isset($_GET['template'])) { $_GET['template'] = 'plaintext'; }
-    ob_start();
-    include('10.content/content/edit/_templates/' . $_GET['template'] . '.inc');
-    $template = ob_get_contents();
-    ob_end_clean();
+    foreach($edits as $edit){
+        if (!isset($_GET['template'])) { $_GET['template'] = 'plaintext'; }
+        ob_start();
+        include('10.content/content/edit/_templates/' . $_GET['template'] . '.inc');
+        $template = ob_get_contents();
+        ob_end_clean();
     
-    $return = "<form action='content/edit?save=save&template={$_GET['template']}&directory={$_GET['directory']}' method='POST'>";
-    $return .= $template;
-    $return .= "<input name='save' type='submit' value='Save Content'>";
-    $return .= "</form>";
+        $return = "<form action='content/edit?save=save&template={$_GET['template']}&directory={$_GET['directory']}&debug' method='POST'>";
+        $return .= $template;
+        $return .= "<input name='save' type='submit' value='Save Content'>";
+        $return .= "</form>";
+    }
     
     return $return;
 }
@@ -61,9 +63,10 @@ function admin_content_edit_save(){
     $directoryroot = e::_dirup(dirname($_SERVER['SCRIPT_FILENAME']));
     
     if (isset($_GET['directory']) AND strlen($_GET['directory']) > 0){
-        $filename = $_GET['directory'];
-        $filename = explode('/',$filename);
+        $filename = explode('/',$_GET['directory']);
         $filename = array_pop($filename);
+        $filename = str_ireplace('.', '-', $filename);
+        $filename = $directoryroot . '/' . $_GET['directory'] . '/' . $filename ;
     } else {
         if (isset($data['title'])){
             // Turn the title into a filename
@@ -81,6 +84,10 @@ function admin_content_edit_save(){
         if(is_array($value)){
             // TODO: Deal with the saving of fields
         } else {
+            // We need to delete files with the $key that we are using, because there may be incorrectly named files
+            $mask = "$directoryroot/{$_GET['directory']}/*.$key";
+            array_map( "unlink", glob( $mask ) );
+            
             $outputfilename = $filename . '.' . $key;
             if (file_put_contents($outputfilename, $value)){
                 print "<strong>Success:</strong> Saved " . $outputfilename . '<br>';
