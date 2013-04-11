@@ -118,8 +118,8 @@
                 </div>
                 <div class="span-6">
                     <ul>
-                        <li><a href="content/edit/posts">Edit Posts</a></li>
-                        <li><a href="content/edit/pages">Edit Pages</a></li>
+                        <li><a href="content/">Edit Posts</a></li>
+                        <li><a href="content/">Edit Pages</a></li>
                     </ul>
                     <br>
                     <br>
