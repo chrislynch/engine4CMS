@@ -14,4 +14,22 @@ function switchto_admin(){
     return $return;
 }
 
+function text_to_path($name){
+    $allowedchars = 'abcdefghijklmnopqrstuvwxyz-0123456789';
+    $path = '';
+    $name = strtolower($name);
+    $name = str_split($name);
+    foreach($name as $char){
+        if (strstr($allowedchars,$char)){
+            $path .= $char;
+        } else {
+            $path .= '_';
+        }
+    }
+    while(strstr($path,'__')){
+        $path = str_ireplace('__', '_', $path);
+    }
+    return $path;
+}
+
 ?>
