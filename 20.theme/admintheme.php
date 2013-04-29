@@ -81,6 +81,7 @@
                 <li><a href="" class="MenuTab" id="HomeMenuItem">Home</a></li>
                 <li><a class="MenuTab" id="ContentMenuItem">Content Management</a></li>
                 <li><a href="filesystem" class="MenuTab" id="FileSystemMenuItem">File System</a></li>
+                <li><a class="MenuTab" id="ServicesMenuItem">Services</a></li>
 		<!-- <li><a href="#" class="MenuTab" id="OrdersMenuItem">Reports</a></li> -->
             </ul>
         </div>
@@ -127,8 +128,18 @@
                 <p>A "Post" is a small piece of content; a tweet, a picture, a video, or short piece of text.</p>
                 <p>A "Page" is a more significant piece of content that can be independently formatted.</p>
         </div>
+        
+        <div id="ServicesMenuContent" class="MenuContent">
+            <ul>
+                <li><a href="services/gplus">Google+</a></li>
+            </ul>
+                
+        </div>
+        
     </div>
     
+        
+        
     <div class="span-24 last" id="MainContentContainer">
         <div id="MainContent">
             <div class="span-16">
