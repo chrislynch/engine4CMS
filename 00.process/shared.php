@@ -14,7 +14,7 @@ function switchto_admin(){
     return $return;
 }
 
-function text_to_path($name){
+function text_to_path($name,$timestamp = FALSE){
     $allowedchars = 'abcdefghijklmnopqrstuvwxyz-0123456789';
     $path = '';
     $name = strtolower($name);
@@ -29,6 +29,10 @@ function text_to_path($name){
     while(strstr($path,'__')){
         $path = str_ireplace('__', '_', $path);
     }
+    if ($timestamp){
+        $path = date('YmdHi') . '.' . $path;
+    }
+    
     return $path;
 }
 
