@@ -7,7 +7,7 @@ if (isset($_GET['logout'])){
 
 if (isset($_POST['user']) && isset($_POST['password'])){
     // Validate that the username and password match
-    if ($_POST['user'] == 'admin' && MD5($_POST['password']) == 'd1c33fc99d2894f3bb5dbb1aa0e16051'){
+    if ($_POST['user'] == 'admin' && MD5($_POST['password']) == '5f4dcc3b5aa765d61d8327deb882cf99'){
         // Authentication test passed
         setcookie('user',$_POST['user'],0,'/');
         header('Location: home',301);
